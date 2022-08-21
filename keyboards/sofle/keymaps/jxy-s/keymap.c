@@ -170,13 +170,13 @@ bool encoder_update_user(uint8_t index, bool clockwise)
             if (clockwise)
             {
                 register_code(KC_LALT);
-                unregister_code(KC_LSFT);
+                register_code(KC_LSFT);
                 unregister_code(KC_LCTL);
             }
             else
             {
                 register_code(KC_LALT);
-                register_code(KC_LSFT);
+                unregister_code(KC_LSFT);
                 unregister_code(KC_LCTL);
             }
         }
@@ -185,13 +185,13 @@ bool encoder_update_user(uint8_t index, bool clockwise)
             if (clockwise)
             {
                 unregister_code(KC_LALT);
-                unregister_code(KC_LSFT);
+                register_code(KC_LSFT);
                 register_code(KC_LCTL);
             }
             else
             {
                 unregister_code(KC_LALT);
-                register_code(KC_LSFT);
+                unregister_code(KC_LSFT);
                 register_code(KC_LCTL);
             }
         }
