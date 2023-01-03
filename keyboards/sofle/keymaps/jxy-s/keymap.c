@@ -50,14 +50,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] =
 
 static void render_logo(void)
 {
-    static const char PROGMEM qmk_logo[] =
-    {
-        0x80,0x81,0x82,0x83,0x84,0x85,0x86,0x87,0x88,0x89,0x8a,0x8b,0x8c,0x8d,0x8e,0x8f,0x90,0x91,0x92,0x93,0x94,
-        0xa0,0xa1,0xa2,0xa3,0xa4,0xa5,0xa6,0xa7,0xa8,0xa9,0xaa,0xab,0xac,0xad,0xae,0xaf,0xb0,0xb1,0xb2,0xb3,0xb4,
-        0xc0,0xc1,0xc2,0xc3,0xc4,0xc5,0xc6,0xc7,0xc8,0xc9,0xca,0xcb,0xcc,0xcd,0xce,0xcf,0xd0,0xd1,0xd2,0xd3,0xd4,0
+    static const char PROGMEM raw_logo[] = {
+        0,128,192,224,240,248,248,248,248,248,248,248,248,248,248,248,248,152,192,248,248,248,248,248,248,248,248,240,224,192,128,  0,  3,  7, 15, 31, 63,127,255,239,223,191,127,255,255,255,255,255,255,255,255,255,255,127,255,255,255,255,127, 63, 31, 15,  7,  3,  0,  0,  0,  0,  0,  0,  0,  1,  3,  7,  6,  0,  3, 15, 63,255,127, 63, 55,  1,  0,  3,  3,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,120,248,248,248,248,248,248,248,248,248,248,248,248,248,  0,  0,  0,  0,  0,  0,  0,  0,
+        0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,255,255,255,255,255,255,255,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,255,255,255,255,255,255,255,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,126,254,252,248,248,240,240,240,240,240,240,248,255,255,255,255,255, 63,  7,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 32,224,224,225,225,225,227,195,  3,  3,  3,  3,  3,  1,  1,129,224,224,224,224,224,224, 96,  0,  0,  0,  0,  0, 
+        0,  0,  0,  0,  0,  0,  1,  7, 31,127,255,255,255,252,240,192,224,248,254,255,255,255, 63, 15,  3,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,129,227,255,255,255,255,255,255,255,247,193,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,192,240,248,254,255,255,255, 63, 15,  3,  7, 31,127,255,255,255,252,248,224,128,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,132,135,135,135,135,135,135,  3,  0,  0,  0,  0,  0,  0,  0,  0,  3,135,135,135,135,135,134,132,  0,  0,  0,  0, 
+        0,  0,  0,  0,  1,  7, 31,127,255,255,255,254,248,192,  0,  0,  0,192,240,252,255,255,255,255, 63, 15,  3,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,  7, 31,127,255,255,255,252,254,255,255,255, 63, 15,  3,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  1,255,255,255,255,255,255,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 31, 31, 31, 31, 31, 31,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
     };
-
-    oled_write_P(qmk_logo, false);
+    oled_write_raw_P(raw_logo, sizeof(raw_logo));
 }
 
 static void print_status_narrow(void)
@@ -95,11 +94,16 @@ static void print_status_narrow(void)
     oled_write_P(PSTR("NUMLK\n"), led_usb_state.num_lock);
     oled_write_P(PSTR("CPSLK\n"), led_usb_state.caps_lock);
     oled_write_P(PSTR("SCRLK\n"), led_usb_state.scroll_lock);
+
+    static const char PROGMEM raw_logo[] = {
+        0,  0,  0,128,192,224,224,224,224,224,224,224,224,224,224,224,224, 96,  0,224,224,224,224,224,224,224,224,192,128,  0,  0,  0, 12, 30, 63,127,255,255,255,191,127,255,255,255,255,255,255,255,255,254,255,255,255,255,255,255,255,255,255,255,127, 63, 30, 12,  0,  0,  0,  0,  0,  1,  3,  7, 15, 30, 25,  3, 15, 63,255,255,255,255,223,  7,  3, 13, 15,  7,  3,  3,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  3,  1,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+    };
+    oled_write_raw_P(raw_logo, sizeof(raw_logo));
 }
 
 oled_rotation_t oled_init_user(oled_rotation_t rotation)
 {
-    return (is_keyboard_master() ? OLED_ROTATION_270 : rotation);
+    return OLED_ROTATION_270;
 }
 
 bool oled_task_user(void)
@@ -123,7 +127,14 @@ bool oled_task_user(void)
 uint16_t encoder_tabbing_timeout_ms = 0;
 uint16_t encoder_tabbing_timer = 0;
 
-uint16_t activate_encoder_tabbing(void)
+typedef enum _enc_tab_t
+{
+    ENC_TAB_ALT,
+    ENC_TAB_CTL
+
+} enc_tab_t;
+
+void do_encoder_tabbing(bool clockwise, enc_tab_t type)
 {
     uint16_t previous;
 
@@ -140,7 +151,49 @@ uint16_t activate_encoder_tabbing(void)
         encoder_tabbing_timeout_ms = 600;
     }
 
-    return previous;
+    if (type == ENC_TAB_ALT)
+    {
+        if (clockwise)
+        {
+            register_code(KC_LALT);
+            unregister_code(KC_LSFT);
+            unregister_code(KC_LCTL);
+        }
+        else
+        {
+            register_code(KC_LALT);
+            register_code(KC_LSFT);
+            unregister_code(KC_LCTL);
+        }
+    }
+    else
+    {
+        if (clockwise)
+        {
+            unregister_code(KC_LALT);
+            unregister_code(KC_LSFT);
+            register_code(KC_LCTL);
+        }
+        else
+        {
+            unregister_code(KC_LALT);
+            register_code(KC_LSFT);
+            register_code(KC_LCTL);
+        }
+    }
+
+    if (previous)
+    {
+        tap_code(KC_TAB);
+    }
+    else
+    {
+        register_code(KC_TAB);
+        unregister_code(KC_LALT);
+        unregister_code(KC_LSFT);
+        unregister_code(KC_LCTL);
+        unregister_code(KC_TAB);
+    }
 }
 
 void matrix_scan_user(void)
@@ -161,76 +214,71 @@ bool encoder_update_user(uint8_t index, bool clockwise)
 {
     if (index == 0)
     {
-        uint16_t previous;
-
-        previous = activate_encoder_tabbing();
-
-        if (get_highest_layer(layer_state) == 0)
+        switch (get_highest_layer(layer_state))
         {
-            if (clockwise)
+            case 0:
             {
-                register_code(KC_LALT);
-                register_code(KC_LSFT);
-                unregister_code(KC_LCTL);
+                do_encoder_tabbing(clockwise, ENC_TAB_ALT);
+                break;
             }
-            else
+            case 1:
             {
-                register_code(KC_LALT);
-                unregister_code(KC_LSFT);
-                unregister_code(KC_LCTL);
+                do_encoder_tabbing(clockwise, ENC_TAB_CTL);
+                break;
             }
-        }
-        else
-        {
-            if (clockwise)
+            case 2:
             {
-                unregister_code(KC_LALT);
-                register_code(KC_LSFT);
-                register_code(KC_LCTL);
+                if (clockwise)
+                {
+                    tap_code(KC_VOLU);
+                }
+                else
+                {
+                    tap_code(KC_VOLD);
+                }
+                break;
             }
-            else
-            {
-                unregister_code(KC_LALT);
-                unregister_code(KC_LSFT);
-                register_code(KC_LCTL);
-            }
-        }
-
-        if (previous)
-        {
-            tap_code(KC_TAB);
-        }
-        else
-        {
-            register_code(KC_TAB);
-            unregister_code(KC_LALT);
-            unregister_code(KC_LSFT);
-            unregister_code(KC_LCTL);
-            unregister_code(KC_TAB);
         }
     }
     else if (index == 1)
     {
-        if (get_highest_layer(layer_state) == 0)
+        switch (get_highest_layer(layer_state))
         {
-            if (clockwise)
+            case 0:
             {
-                tap_code(KC_WH_D);
+                if (clockwise)
+                {
+                    tap_code(KC_WH_U);
+                }
+                else
+                {
+                    tap_code(KC_WH_D);
+                }
+                break;
             }
-            else
+            case 1:
             {
-                tap_code(KC_WH_U);
+                if (clockwise)
+                {
+                    tap_code(KC_PGUP);
+                }
+                else
+                {
+                    tap_code(KC_PGDN);
+                }
+                break;
             }
-        }
-        else
-        {
-            if (clockwise)
+            case 2:
             {
-                tap_code(KC_PGDN);
-            }
-            else
-            {
-                tap_code(KC_PGUP);
+                if (clockwise)
+                {
+                    tap_code(KC_VOLD);
+                }
+                else
+                {
+                    tap_code(KC_VOLU);
+                }
+                break;
             }
         }
     }
