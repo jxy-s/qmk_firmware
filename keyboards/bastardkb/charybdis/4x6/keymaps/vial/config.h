@@ -16,9 +16,22 @@
  */
 #pragma once
 
+#define BUILD_ID ((uint32_t)0x00001337)
+
+#ifdef POINTING_DEVICE_ENABLE
+// Automatically enable the pointer layer when moving the trackball.  See also:
+// - `CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS`
+// - `CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD`
+// #define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+#endif // POINTING_DEVICE_ENABLE
+
 #ifdef VIA_ENABLE
 /* VIA configuration. */
-#    define DYNAMIC_KEYMAP_LAYER_COUNT 4
+#    ifdef CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
+#        define DYNAMIC_KEYMAP_LAYER_COUNT 4
+#    else
+#        define DYNAMIC_KEYMAP_LAYER_COUNT 3
+#    endif
 
 #    ifdef VIAL_ENABLE
 /** Vial-specific configuration. */
@@ -33,10 +46,3 @@
 #endif     // VIA_ENABLE
 
 /* Charybdis-specific features. */
-
-#ifdef POINTING_DEVICE_ENABLE
-// Automatically enable the pointer layer when moving the trackball.  See also:
-// - `CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_TIMEOUT_MS`
-// - `CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD`
-// #define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
-#endif // POINTING_DEVICE_ENABLE

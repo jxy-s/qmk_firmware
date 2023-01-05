@@ -9,47 +9,46 @@
     "customKeycodes": [
         {
             "title": "Default DPI Increase",
-            "name": "Default DPI Inc",
+            "name": "Mouse\nDPI+",
             "shortName": "DPI+"
         },
         {
             "title": "Default DPI Decrease",
-            "name": "Default DPI Dec",
+            "name": "Mouse\nDPI-",
             "shortName": "DPI-"
         },
         {
             "title": "Sniping DPI Increase",
-            "name": "Sniping DPI Inc",
+            "name": "Sniping\nDPI+",
             "shortName": "Snp+"
         },
         {
             "title": "Sniping DPI Decrease",
-            "name": "Sniping DPI Dec",
+            "name": "Sniping\nDPI-",
             "shortName": "Snp-"
         },
         {
             "title": "Sniping Momentary",
-            "name": "Sniping MO",
-            "shortName": "Snp"
+            "name": "Sniping\nMO",
+            "shortName": "SnpMO"
         },
         {
             "title": "Sniping Toggle",
-            "name": "Sniping TO",
-            "shortName": "SnpT"
+            "name": "Sniping\nTG",
+            "shortName": "SnpTG"
         },
         {
             "title": "Drag-scroll Momentary",
-            "name": "Drag-scroll MO",
-            "shortName": "Drg"
+            "name": "Scroll\nMO",
+            "shortName": "DrgMO"
         },
         {
             "title": "Drag-scroll Toggle",
-            "name": "Drag-scroll TG",
-            "shortName": "DrgT"
+            "name": "Scroll\nTG",
+            "shortName": "DrgTG"
         }
     ],
     "layouts": {
-        "labels": [["Trackball", "Right", "Left"]],
         "keymap": [
             [
                 {
@@ -228,61 +227,27 @@
             ],
             [
                 {
-                    "x": 4.75
+                    "x": 5.75
                 },
-                "4,3\n\n\n0,0",
-                "4,4\n\n\n0,0",
+                "4,3",
                 "4,1",
                 {
                     "x": 0.5
                 },
                 "9,1",
-                "9,3\n\n\n0,0",
-                {
-                    "d": true
-                },
-                "\n\n\n0,0"
+                "9,4",
+                "9,3"
             ],
             [
                 {
-                    "x": 5.75
+                    "x": 6.75
                 },
-                "4,5\n\n\n0,0",
-                "4,2",
+                "4,5",
                 {
                     "x": 0.5
                 },
-                "9,5\n\n\n0,0",
-                {
-                    "d": true
-                },
-                "\n\n\n0,0"
-            ],
-            [
-                {
-                    "y": 0.5,
-                    "x": 4.75,
-                    "d": true
-                },
-                "\n\n\n0,1",
-                "4,3\n\n\n0,1",
-                {
-                    "x": 2.5
-                },
-                "9,4\n\n\n0,1",
-                "9,3\n\n\n0,1"
-            ],
-            [
-                {
-                    "x": 5.75,
-                    "d": true
-                },
-                "\n\n\n0,1",
-                {
-                    "x": 1.5
-                },
-                "9,2\n\n\n0,1",
-                "9,5\n\n\n0,1"
+                "9,2",
+                "9,5"
             ]
         ]
     }
