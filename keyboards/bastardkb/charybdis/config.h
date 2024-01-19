@@ -36,6 +36,10 @@
 #define POINTING_DEVICE_ROTATION_180
 #define CHARYBDIS_DRAGSCROLL_REVERSE_Y
 
+// Adjust the tap hold behavior
+#define TAPPING_TERM 200
+#define HOLD_ON_OTHER_KEY_PRESS
+
 /* RGB matrix support. */
 #ifdef RGB_MATRIX_ENABLE
 #        define ENABLE_RGB_MATRIX_ALPHAS_MODS
